@@ -26,4 +26,7 @@
 		}
 	}
 
+	// Return Response as JSON
+	echo json_encode( $result );
+
 ?>
