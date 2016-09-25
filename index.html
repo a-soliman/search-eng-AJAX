@@ -30,7 +30,16 @@
 					data : 'planet_name=' + $('#planet_name').val(),
 					dataType : 'JSON',
 					success : function(response, status, http){
-						console.log( response )
+						var new_suggestions = ''
+
+						// loop through the result
+						$.each( response, function(index, item ) {
+							new_suggestions = new_suggestions + 'Name : ' + item.name + '<br />'
+							new_suggestions = new_suggestions + 'No. of days in a year' + item.no_of_days_in_year + '<br />'
+							new_suggestions = new_suggestions + 'Planet order No. : ' + item.order_no + '<br />'
+						})
+
+						$('#suggestions_box').html( new_suggestions )
 					},
 					error : function(http, status, error) {
 						alert('Some error ahs occured : ' + error)
