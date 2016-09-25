@@ -9,7 +9,7 @@
 	<body>
 		<div>
 			Planet Name:
-			<input type="text" id="planet_name" name="planet_name">
+			<input type="text" id="planet_name" name="planet_name" onkeyup="getPlanetDetails()">
 		</div>
 
 		<div>
@@ -22,5 +22,22 @@
 		<!-- ******Jquery GOOGLE CDN***** -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="js/main.js"></script>
+		<script>
+			function getPlanetDetails() {
+				$.ajax ({
+					url : 'http://localhost/planets-ajax/server.php',
+					type : 'POST',
+					data : 'planet_name=' + $('#planet_name').val(),
+					dataType : 'JSON',
+					success : function(response, status, http){
+						console.log( response )
+					},
+					error : function(http, status, error) {
+						alert('Some error ahs occured : ' + error)
+					}
+				})
+			}
+		</script>
+
 	</body>
 </html>
